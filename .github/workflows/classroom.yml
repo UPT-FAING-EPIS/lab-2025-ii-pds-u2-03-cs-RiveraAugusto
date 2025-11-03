@@ -18,8 +18,8 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: t1
-        setup-command: export HOME='/home/runner' && cd Payment && dotnet restore
-        command: export HOME='/home/runner' && cd Payment && dotnet test
+        setup-command: cd payment && npm ci
+        command: cd payment && npm run test:cov
         timeout: 10
         max-score: 2
     - name: t2
@@ -27,8 +27,8 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: t2
-        setup-command: export HOME='/home/runner' && cd ATM && dotnet restore
-        command: export HOME='/home/runner' && cd ATM && dotnet test
+        setup-command: cd atm && npm ci
+        command: cd atm && npm run test:cov
         timeout: 10
         max-score: 2
     - name: t3
@@ -37,7 +37,7 @@ jobs:
       with:
         test-name: t3
         setup-command: ''
-        command: cat Payment/disenio.md | grep mermaid.md
+        command: cd payment&& cat class_diagram.md | grep mermaid
         timeout: 10
         max-score: 2
     - name: t4
@@ -46,7 +46,7 @@ jobs:
       with:
         test-name: t4
         setup-command: ''
-        command: cat ATM/disenio.md | grep mermaid.md
+        command: cd atm && cat class_diagram.md | grep mermaid
         timeout: 10
         max-score: 2
     - name: t5
